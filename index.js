@@ -41,7 +41,15 @@ let readAndCopyDirectory = function (dir, prefix) {        //чт и коп ди
                 let new_unit = dir + '\\' + element;
                 if(fs.statSync(new_unit).isDirectory()) {               
                     readAndCopyDirectory(new_unit, prefix + element + '/');
-                } else  
+                } else  if(path.extname(new_unit) === ".txt"){
+                    sum.write('console.log(\'' + prefix + element + '\');\n');   //запись ф в с
+                    // коп файлов с copyright
+                    let new_file = `${NEW_DIRECTORY}\\${path.basename(new_unit)}`;
+                    let logger = fs.createWriteStream(new_file);
+                    fs.readFile(new_unit, (err, data) => {
+                        if(err) console.error("Error copy file")
+                        else logger.write(copyright + '\n' + data + '\n' + copyright);
+                    });
                 }
                 
             }, this);
