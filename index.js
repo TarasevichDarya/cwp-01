@@ -90,3 +90,7 @@ let createDir = function (callback) {
     });
     callback();
 }
+
+createDir(() => readAndCopyDirectory(DIR_PATH, prefix));
+console.log("Create or read/copy dir is done");
+console.log("All is done");
