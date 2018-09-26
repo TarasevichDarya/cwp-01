@@ -59,3 +59,23 @@ let readAndCopyDirectory = function (dir, prefix) {        //чт и коп ди
     });
 }
 console.log("Create or read/copy dir is done");
+
+let createDir = function (callback) {
+
+    fs.access(NEW_DIRECTORY, (err) => {
+        if(err && err.code == 'ENOENT') {
+            fs.mkdir(NEW_DIRECTORY, (err) => {
+                if (err) console.error("Error create dir");
+            });
+           
+        }
+        else 
+        {
+            console.log("This directory is already created!");
+            
+            
+        }
+    });
+    
+    
+}
