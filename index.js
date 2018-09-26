@@ -27,3 +27,25 @@ if (process.argv.length > 3) {
 
 const DIR_PATH = process.argv[2];
 const NEW_DIRECTORY = DIR_PATH + '\\' + path.basename(DIR_PATH);
+let prefix = "";
+const sum = fs.createWriteStream('summary.js');
+let copyright = "";
+console.log("Dir path is "+ `${DIR_PATH}`);
+
+let readAndCopyDirectory = function (dir, prefix) {        //чт и коп дир
+    fs.readdir(dir, (err, files) => {
+        if(err) {
+            console.error("Error read dir: " + dir);
+        } else {
+            files.forEach(function(element) {
+                let new_unit = dir + '\\' + element;
+                if(fs.statSync(new_unit).isDirectory()) {               
+                    readAndCopyDirectory(new_unit, prefix + element + '/');
+                } else  
+                }
+                
+            }, this);
+        }
+    });
+}
+console.log("Create or read/copy dir is done");
