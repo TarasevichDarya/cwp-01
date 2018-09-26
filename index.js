@@ -81,5 +81,12 @@ let createDir = function (callback) {
         }
     });
     
-    
+    fs.readFile("config.json", (err, data) => {
+        if (err) console.error("Error read json")
+        else {
+            copyright = JSON.parse(data).copyright;
+            console.log("My copyright: "+`${copyright}`);
+        }
+    });
+    callback();
 }
