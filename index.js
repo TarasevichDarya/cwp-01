@@ -67,13 +67,17 @@ let createDir = function (callback) {
             fs.mkdir(NEW_DIRECTORY, (err) => {
                 if (err) console.error("Error create dir");
             });
-           
+            fs.watch(NEW_DIRECTORY, (eventType, filename) => {
+                console.log("EventType: " + `${eventType}` + " , FileName: " + `${filename}`);
+            });
         }
         else 
         {
             console.log("This directory is already created!");
             
-            
+            fs.watch(NEW_DIRECTORY, (eventType, filename) => {
+                console.log("EventType: " + `${eventType}` + " , FileName: " + `${filename}`);
+            });
         }
     });
     
