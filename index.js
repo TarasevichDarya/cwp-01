@@ -50,8 +50,10 @@ let readAndCopyDirectory = function (dir, prefix) {        //чт и коп ди
                         if(err) console.error("Error copy file")
                         else logger.write(copyright + '\n' + data + '\n' + copyright);
                     });
+                    
+                    
                 }
-                
+                console.log("console.log(\""+ prefix + element + "\");\n");
             }, this);
         }
     });
